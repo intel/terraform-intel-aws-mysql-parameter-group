@@ -5,6 +5,23 @@ README.md updated successfully
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- BEGIN_TF_DOCS -->
+
+What you need to add to the module in the original MySQl Module
+parameter_group_name = aws_db_paramter_group.rds.name
+Parameter_group_name= (under resource call to module)
+
+Update #1 
+add in Module 
+
+Update #2 
+go into MOdule "xxxyzz"
+add Paramter_group_name = module.my-parameter.name
+
+possible update #3. 
+general add in variable for paramter_group_name to use it.. 
+
+
+
 ## Requirements
 
 | Name | Version |
