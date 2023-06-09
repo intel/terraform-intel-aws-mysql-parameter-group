@@ -18,7 +18,7 @@ resource "random_id" "rid" {
 resource "aws_db_parameter_group" "rds" {
   name   = "${var.db_parameter_group_name}-${random_id.rid.dec}-Intel-Optimized"
   family = var.db_parameter_group_family
-
+#should there be a tag here as well
   dynamic "parameter" {
     for_each = local.db_parameter_merged
     content {
@@ -27,7 +27,7 @@ resource "aws_db_parameter_group" "rds" {
       apply_method = parameter.value.apply_method
     }
   }
-  # Probably want a tag block in here but this is just a poc
+  # This configuration will prevent destruction of the deposed parameter group while still in use by the database during upgrade.
   lifecycle {
     create_before_destroy = true #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group#create_before_destroy-lifecycle-configuration
   }
