@@ -1,11 +1,75 @@
+p align="center">
+  <img src="https://github.com/intel/terraform-intel-aws-mssql/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+</p>
+
+# Intel® Cloud Optimization Modules for Terraform
+
+© Copyright 2022, Intel Corporation
+
+## AWS RDS MSSQL module
+
+Configuration in this directory creates an Amazon RDS instance for MSSQL. The instance is created on an Intel Icelake instance M6i.xlarge by default. The goal of this module is to get you started with a database that is the latest Intel Architecture.
+
+As you configure your application's environment, choose the configurations for your infrastructure that matches your application's requirements.
+
+The MSSQL Optimizations were based off [Intel Xeon Tunning guides](<https://www.intel.com/content/www/us/en/developer/articles/guide/sql-server-tuning-guide-for-otp-using-xeon.html>) 
+
+Note:  Recommendation to utilize SQL statements for optimization configuration. 
+
+## Usage
+
+**See examples folder for complete examples.**
+
+
+By default, you will only have to pass three variables
+```hcl
+db_password
+rds_identifier
+vpc_id
+```
+
+variables.tf
+```hcl
+variable "db_password" {
+  description = "Password for the master database user."
+  type        = string
+  sensitive   = true
+}
+```
+
+main.tf
+```hcl
+module "mssql-server" {
+  source         = "intel/aws-mssql/intel"
+  db_password    = var.db_password
+  rds_identifier = "<NAME-FOR-RDS-INSTANCE>"
+  vpc_id         = "<YOUR-VPC-ID>"
+}
+```
+
+Run terraform
+
+```bash
+export TF_VAR_db_password ='<USE_A_STRONG_PASSWORD>'
+
+terraform init  
+terraform plan
+terraform apply 
+```
+
+## Considerations
+
+- Check in the variables.tf file for the region where this database instance will be created. It is defaulted to run in us-west-1 region within AWS. If you want to run it within any other region, make changes accordingly within the Terraform code
+
+- Check the variables.tf file for incoming ports allowed to connect to the database instance. The variable name is ingress_cidr_blocks. Currently it is defaulted to be open to the world like 0.0.0.0/0. Before runing the code, configure it based on specific security policies and requirements within the environment it is being implemented
+
+- Check if you getting errors while running this Terraform code due to AWS defined soft limits or hard limits within your AWS account. Please work with your AWS support team to resolve limit constraints
+
+- Using HashiCorp Modules alongside green-blue deployment allows for a secure and efficient deployment process. The modules can be easily integrated into both the active and inactive environments, ensuring consistency across both environments.
+   - Instance - If you apply the instances will shut down immediately and restart, creating service interruption.
+   - Platform - If you apply, it will wait for the next maintenance window to change the instance & configuration. You can force apply with additional TF code.
+
 # terraform-aws-intel-db-parameters
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-README.md updated successfully
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-<!-- BEGIN_TF_DOCS -->
-
 What you need to add to the module in the original MySQl Module
 parameter_group_name = aws_db_paramter_group.rds.name
 Parameter_group_name= (under resource call to module)
@@ -20,8 +84,11 @@ add Paramter_group_name = module.my-parameter.name
 possible update #3. 
 general add in variable for paramter_group_name to use it.. 
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+README.md updated successfully
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |

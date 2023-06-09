@@ -16,7 +16,7 @@ resource "random_id" "rid" {
 
 # Creates a db parameter group
 resource "aws_db_parameter_group" "rds" {
-  name   = "${var.db_parameter_group_name}-${random_id.rid.dec}"
+  name   = "${var.db_parameter_group_name}-${random_id.rid.dec}-Intel-Optimized"
   family = var.db_parameter_group_family
 
   dynamic "parameter" {
