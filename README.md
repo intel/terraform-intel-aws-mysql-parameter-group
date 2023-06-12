@@ -24,9 +24,10 @@ module "aws-mysql-parameter-group" {
   #merge to main for testing..  do PR request..   
 }
 
-```
+
 Within the main.tf block aws_db_instance, edit the parameter_group_name to use the "module.db_parameter_group_name"
 
+```hcl
 resource "aws_db_instance" "mysql" {
   allocated_storage    = 10
   db_name              = ".."
@@ -39,7 +40,7 @@ resource "aws_db_instance" "mysql" {
   skip_final_snapshot  = true 
 }
 ```
-```
+```hcl
 Another example utilizing the parameters module within a mysql module
 # Provision Intel Optimized AWS MySQL server
 module "optimized-mysql-server" {
