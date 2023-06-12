@@ -1,4 +1,4 @@
-p align="center">
+<p align="center">
   <img src="https://github.com/intel/terraform-intel-aws-mssql/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
