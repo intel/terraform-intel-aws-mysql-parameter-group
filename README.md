@@ -40,8 +40,10 @@ resource "aws_db_instance" "mysql" {
   skip_final_snapshot  = true 
 }
 ```
-```hcl
+
 Another example utilizing the parameters module within a mysql module
+
+```hcl
 # Provision Intel Optimized AWS MySQL server
 module "optimized-mysql-server" {
   source         = "intel/aws-mysql/intel"
