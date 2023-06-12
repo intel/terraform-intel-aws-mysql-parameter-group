@@ -21,8 +21,7 @@ main.tf
 ```hcl
 module "aws-mysql-parameter-group" {
   source            = "github.com/otcshare2/../../"  #to be updated for testing use this use github.com/otcshare2/parameters module..  
-  #merge to main for testing..  do PR request..   
-}
+  }
 ```
 
 Within the main.tf block aws_db_instance, edit the parameter_group_name to use the "module.db_parameter_group_name"
@@ -56,7 +55,6 @@ module "optimized-mysql-server" {
 ## Considerations
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-README.md updated successfully
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- BEGIN_TF_DOCS -->
