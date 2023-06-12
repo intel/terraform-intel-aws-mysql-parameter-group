@@ -162,16 +162,59 @@ variable "db_parameters" {
         apply_method = optional(string, "immediate")
       }))
     })
-
+  })
+  default = {
+    mysql = {
+      back_log                       = {}
+      character_set_server           = {}
+      collation_server               = {}
+      default_password_lifetime      = {}
+      innodb_adaptive_flushing       = {}
+      innodb_adaptive_hash_index     = {}
+      innodb_buffer_pool_instances   = {}
+      innodb_buffer_pool_size        = {}
+      innodb_change_buffering        = {}
+      innodb_checksum_algorithm      = {}
+      innodb_file_per_table          = {}
+      innodb_flush_log_at_trx_commit = {}
+      innodb_flush_neighbors         = {}
+      innodb_io_capacity             = {}
+      innodb_io_capacity_max         = {}
+      innodb_log_buffer_size         = {}
+      innodb_log_file_size           = {}
+      innodb_lru_scan_depth          = {}
+      innodb_max_dirty_pages_pct     = {}
+      innodb_max_dirty_pages_pct_lwm = {}
+      innodb_max_purge_lag           = {}
+      innodb_max_purge_lag_delay     = {}
+      innodb_open_files              = {}
+      innodb_page_cleaners           = {}
+      innodb_purge_threads           = {}
+      innodb_read_io_threads         = {}
+      innodb_spin_wait_delay         = {}
+      innodb_stats_persistent        = {}
+      innodb_thread_concurrency      = {}
+      innodb_undo_log_truncate       = {}
+      innodb_use_native_aio          = {}
+      innodb_write_io_threads        = {}
+      join_buffer_size               = {}
+      max_connections                = {}
+      max_prepared_stmt_count        = {}
+      performance_schema             = {}
+      sort_buffer_size               = {}
+      table_open_cache               = {}
+      table_open_cache_instances     = {}
+      transaction_isolation          = {}
+    }
+  }
   description = "Intel Cloud optimizations for Xeon processors"
 }
-
 variable "db_engine" {
   description = "Database engine version for AWS database instance."
   type        = string
   validation {
-    condition     = contains(["mysql"], var.db_engine)
-    error_message = "The db_engine must be \"mysql\"."
+    condition     = contains(["mysql", "postgres"], var.db_engine)
+    error_message = "The db_engine must be \"mysql\" or \"postgres\"."
   }
   default = "mysql"
 }
