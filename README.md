@@ -8,7 +8,7 @@
 
 ## AWS RDS MSSQL module
 
-Configuration in this directory creates an Amazon RDS instance parameter group for MysQL. This module is leveraged in a pre-existing infrastructure where Amazon RDS MySQL is utilized.  This module exposes the Optimizations by Intel for MySQL.
+Configuration in this directory creates an Amazon RDS instance parameter group for MysQL. This module is leveraged in a pre-existing Amazon RDS MySQL module. This module exposes the Optimizations by Intel for MySQL.
 
 ## Usage
 
@@ -20,38 +20,26 @@ main.tf
 
 ```hcl
 module "aws-mysql-parameter-group" {
-  source            = "github.com/otcshare2/../../"  #to be updated for testing use this use github.com/otcshare2/parameters module..  
+  source   = "github.com/intel/terraform-intel-aws-mysql-parameter-group.git" 
   }
 ```
 
-Within the main.tf block aws_db_instance, edit the parameter_group_name to use the "module.db_parameter_group_name"
+Within the main.tf aws_db_instance resource block, edit the parameter_group_name to use the "module.aws-mysql-parameter-group.db_parameter_group_name"
 
 ```hcl
 resource "aws_db_instance" "mysql" {
   allocated_storage    = 10
-  db_name              = ".."
-  engine               = ".."
-  engine_version       = ".."
-  instance_class       = "best intel only "
-  username             = ".."
-  password             = ".."
-  parameter_group_name = "module.aws-mysql-parameter-group.db_parameter_group_name"
-  skip_final_snapshot  = true 
+  db_name              = "testmysqlrds"
+  engine               = "mysql"
+  engine_version       = "8.0"
+  instance_class       = "db.m6i.large"
+  username             = "admin25"
+  password             = "var.db_password"
+  parameter_group_name = module.aws-mysql-parameter-group.db_parameter_group_name
+  skip_final_snapshot  = true
 }
 ```
 
-Another example utilizing the parameters module within a mysql module
-
-```hcl
-# Provision Intel Optimized AWS MySQL server
-module "optimized-mysql-server" {
-  source         = "intel/aws-mysql/intel"
-  db_password    = var.db_password
-  rds_identifier = "<NAME-FOR-RDS-INSTANCE>"
-  vpc_id = "<YOUR-VPC-ID-HERE>"
-  parameter_group_name = "module.db_parameter_group_name"
-}
-```
 ## Considerations
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

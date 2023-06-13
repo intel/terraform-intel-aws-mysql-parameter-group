@@ -4,36 +4,21 @@
 
 # Intel Cloud Optimization Modules for Terraform
 
-© Copyright 2022, Intel Corporation
+© Copyright 2023, Intel Corporation
 
-## Add Module Name Here
+## AWS RDS MySQL Parameters Group
 
-Add Module description here
+This module by itself will create the parameters group in RDS that will bring in the Intel Optimizations.  You will use this module in conjunction with your curent AWS RDS MySQL module.    For testing purposes you can utilize this example to create the parameters group to test it out.   
 
 ## Usage
-
-**See examples folder for complete examples.**
-
-variables.tf
-
-```hcl
-<EXAMPLE>
-```
-main.tf
-```hcl
-<EXAMPLE>
-```
-
 
 
 Run Terraform
 
 ```hcl
-export TF_VAR_db_password ='<USE_A_STRONG_PASSWORD>'
-
 terraform init  
 terraform plan
 terraform apply 
 ```
+
 ## Considerations
-Add additional considerations here
