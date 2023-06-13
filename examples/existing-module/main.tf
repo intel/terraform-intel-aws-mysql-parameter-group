@@ -7,6 +7,7 @@ module "aws-mysql-parameter-group" {
 # Example of how to pass variable for database password:
 # terraform apply -var="db_password=..."
 
+
 resource "aws_db_instance" "mysql" {
   allocated_storage    = 10
   db_name              = "testmysqlrds"
