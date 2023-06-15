@@ -6,9 +6,9 @@
 
 © Copyright 2023, Intel Corporation
 
-## AWS RDS MSSQL module
+## AWS RDS MySQL module
 
-Configuration in this directory creates an Amazon RDS instance parameter group for MysQL. This module is leveraged in a pre-existing Amazon RDS MySQL module. This module exposes the Optimizations by Intel for MySQL.
+Configuration in this directory creates an Amazon RDS instance parameter group for MySQL. This module is leveraged in a pre-existing Amazon RDS MySQL module. This module exposes the Optimizations by Intel for MySQL.
 
 ## Usage
 
