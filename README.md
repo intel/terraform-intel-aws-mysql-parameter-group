@@ -20,7 +20,7 @@ main.tf
 
 ```hcl
 module "aws-mysql-parameter-group" {
-  source   = "github.com/intel/terraform-intel-aws-mysql-parameter-group.git" 
+  source   = "intel/terraform-intel-aws-mysql-parameter-group/intel" 
   }
 ```
 

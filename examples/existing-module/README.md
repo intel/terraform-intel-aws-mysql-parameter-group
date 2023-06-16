@@ -19,7 +19,7 @@ main.tf
 # Provision Intel Optimized AWS MySQL server
 
 module "aws-mysql-parameter-group" {
-  source           = "github.com/OTCShare2/terraform-intel-aws-mysql-parameter-group.git"  #to be updated for testing use this use github.com/otcshare2/parameters module..
+  source           = "intel/terraform-intel-aws-mysql-parameter-group/intel"  #to be updated for testing use this use github.com/otcshare2/parameters module..
   }
 
 # Example of how to pass variable for database password:
