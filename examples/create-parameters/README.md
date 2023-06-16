@@ -12,6 +12,13 @@ This module by itself will create the parameters group in RDS that will bring in
 
 ## Usage
 
+main.tf
+```hcl
+# Provision Intel Optimized AWS MSSQL server
+module "aws-mysql-parameter-group" {
+  source = "intel/aws-mysql-paramter-group/intel"
+}
+```
 
 Run Terraform
 
