@@ -2,7 +2,7 @@
 
 # Provision Intel Optimized AWS MSSQL server
 module "aws-mysql-parameter-group" {
-  source            = "../../"
+  source = "intel/aws-mysql-paramter-group/intel"
 }
 
 

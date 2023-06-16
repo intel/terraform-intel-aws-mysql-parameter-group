@@ -18,7 +18,7 @@ resource "random_id" "rid" {
 resource "aws_db_parameter_group" "rds" {
   name   = "${var.db_parameter_group_name}-${random_id.rid.dec}-intel-optimized"
   family = var.db_parameter_group_family
-#should there be a tag here as well
+  #should there be a tag here as well
   dynamic "parameter" {
     for_each = local.db_parameter_merged
     content {
