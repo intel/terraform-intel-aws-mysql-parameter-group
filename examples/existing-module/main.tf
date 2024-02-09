@@ -1,8 +1,7 @@
 # Provision Intel Optimized AWS MySQL server
 
 module "aws-mysql-parameter-group" {
-  #source = "intel/aws-mysql-parameter/intel"
-  source = "../../"
+  source = "intel/aws-mysql-parameter/intel"
 }
 
 # Example of how to pass variable for database password:
